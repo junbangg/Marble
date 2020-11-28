@@ -8,17 +8,28 @@
         -set_id():
             @Params:
                 -playerID (도시를 차지하는 플레이어의 id)
+        -get_info():
+            => 정보 출력
     '''
 class City:
 
     def __init__(self, name):
         self.name = name
-        self.id= 0
+        self.id = 0
 
     def get_id(self):
         return self.id
 
     def set_id(self, playerID):
-        self.id= playerID
+        self.id = playerID
+
+
+    def get_info(self):
+        if self.id == 0:
+            return self.name
+        else:
+            temp = self.name + "(" + str(self.id) + ")"
+            return temp
+            #print("{}({})".format(self.name, self.id))
 
 
