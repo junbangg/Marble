@@ -1,7 +1,7 @@
 from random import randint
 
 
-class User:
+class Player:
     def __init__(self, id, balance=4000):
         self.id = id
         self.balance = balance
