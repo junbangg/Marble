@@ -1,5 +1,5 @@
 from City import City
-#from Player import Player
+from Player import Player
 
 
 #도시 배열
@@ -34,12 +34,12 @@ for i in range (0,30) :
     #도시가 플레이어1의 소유인 경우
     elif cityList[p1].get_id == 1 :
         continue
-    #도시가 플레이어 2의 소유인 경우, 플레이어2의 자금 500원추가 
+    #도시가 플레이어 2의 소유인 경우, 플레이어2의 자금 500원추가
     elif cityList[p1].get_id() == 2 and player1.pay_fee() == True :
         cityList[p1].set_id(1)
         player2.balance = player2.balance + 500
     #도시가 플레이어 2의 소유이지만 자금이 없는 경우
-    elif cityList[p1].get_id() == 2 and plater1.pay_fee() == False :
+    elif cityList[p1].get_id() == 2 and player1.pay_fee() == False :
         print('플레이어2가 승리하였습니다.')
         break
     #자금이 다 떨어진 경우
