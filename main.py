@@ -45,7 +45,9 @@ for i in range(0, 30):
         print('Player 2 가 승리하였습니다.')
         break
     #플레이어1의 위치와 남은 금액
-    print('Player 1 의 현재위치 :', cityList[p1].get_info()[:-3])
+
+#value_if_true if condition else value_if_false
+    print('Player 1 의 현재위치 :', cityList[p1].get_info() if cityList[p1].get_info() == "Start" else cityList[p1].get_info()[:-3])
     print('Player 1 남은 금액 : {}\n'.format(player1.balance))
     #플레이어2 ( 코드는 동일)
     p2 = player2.move()
@@ -62,7 +64,8 @@ for i in range(0, 30):
     elif player2.balance == 0:
         print('Player 2이 승리하였습니다.')
         break
-    print('Player 2의 현재위치 :', cityList[p2].get_info()[:-3])
+
+    print('Player 2 의 현재위치 :', cityList[p2].get_info() if cityList[p2].get_info() == "Start" else cityList[p2].get_info()[:-3])
     print('Player 2 남은 금액 : {}\n'.format(player2.balance))
     print("=======================================================================================================================\n")
 

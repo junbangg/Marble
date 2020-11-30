@@ -25,7 +25,7 @@ class City:
 
 
     def get_info(self):
-        if self.id == 0:
+        if self.id == 0 or self.name == "Start":
             return self.name
         else:
             temp = self.name + "(" + str(self.id) + ")"
