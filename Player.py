@@ -20,7 +20,7 @@ class Player:
     # 주사위 던져서 몇 나왔는지 프린트, 이동, 위치 반환
     def move(self):
         ri = randint(1, 6)
-        print("{}번 플레이어의 주사위가 {}이 나왔다.".format(self.id, ri))
+        print("Player{} 주사위 ==> {}".format(self.id, ri))
         self.location = (self.location + ri) % 10
         return self.location
 
