@@ -30,6 +30,5 @@ class City:
         else:
             temp = self.name + "(" + str(self.id) + ")"
             return temp
-            #print("{}({})".format(self.name, self.id))
 
 

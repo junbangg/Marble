@@ -16,7 +16,7 @@ def print_map(i):
     print("\t" + mapString[4:])
     print("\t----------------------------------------------------------------------------------------------------------------------\n")
 
-#플레이어 설정
+#플레이어 생성
 player1 = Player(1)
 player2 = Player(2)
 
@@ -24,7 +24,7 @@ for i in range(0, 30):
     input("Enter를 누르세요:")
     #지도 출력
     print_map(i)
-    #플레이어1
+    #Player 1 주사위
     p1 = player1.move()
     #위치가 start인 경우
     if cityList[p1] == cityList[0]:
@@ -41,15 +41,13 @@ for i in range(0, 30):
         print('Player 2가 승리하였습니다.')
         break
     #자금이 다 떨어진 경우
-    elif player1.balance == 0: #<1
+    elif player1.balance == 0:
         print('Player 2 가 승리하였습니다.')
         break
     #플레이어1의 위치와 남은 금액
-
-#value_if_true if condition else value_if_false
     print('Player 1 의 현재위치 :', cityList[p1].get_info() if cityList[p1].get_info() == "Start" else cityList[p1].get_info()[:-3])
     print('Player 1 남은 금액 : {}\n'.format(player1.balance))
-    #플레이어2 ( 코드는 동일)
+    #Player 2 ( 코드는 동일)
     p2 = player2.move()
     if cityList[p1] == cityList[0]:
         cityList[0].set_id(1)
