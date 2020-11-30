@@ -24,6 +24,8 @@ for i in range(0, 30):
     input("Enter를 누르세요:")
     #지도 출력
     print_map(i)
+
+    print("DICE ROLL!\n")
     #Player 1 주사위
     p1 = player1.move()
     #위치가 start인 경우
