@@ -1,5 +1,24 @@
 from City import City
 from Player import Player
+# 주사위 돌리는 플레이어(x) / 상대플레이어(y) / 주사위 나온 수(z)
+def turn (x,y,z):
+    print('{} 도착 {}'.format(cityList[z].name, cityList[z].get_owner_print()))    
+    # 도시가 비어있는 경우
+    if cityList[z].get_owner() == 0:
+        if x.buy_city(x.get_id(), cityList[z]):
+            cityList[z].set_owner(x.get_id())
+        else:
+            print('잔고가 부족하여 구입할 수 없다.')
+    # 도시가 플레이어 y의 소유인 경우, 플레이어y의 자금 500원추가
+    elif cityList[z].get_owner() == y.get_id():
+        if x.pay_fee(x.get_id()):
+            y.balance += 500
+        # 도시가 플레이어 2의 소유이지만 자금이 없는 경우
+        else:
+            print('player',y.get_id(),'가 승리하였습니다.')
+            global player_win
+            player_win = 1
+    return x
 
 
 # 지도 출력
@@ -25,7 +44,8 @@ cityList[0].set_owner(-1)
 player1 = Player(1)
 player2 = Player(2)
 cnt = 0
-
+#플레이어 승리 플래그
+player_win = 0
 for i in range(0, 30):
     input("턴을 진행하려면 Enter를 누르세요:")
     # 지도 출력
@@ -34,38 +54,19 @@ for i in range(0, 30):
 
     # Player 1 주사위
     p1 = player1.move()
-    print('{} 도착 {}'.format(cityList[p1].name, cityList[p1].get_owner_print()))
-    # 도시가 비어있는 경우
-    if cityList[p1].get_owner() == 0:
-        if player1.buy_city(1, cityList[p1]):
-            cityList[p1].set_owner(1)
-        else:
-            print('잔고가 부족하여 구입할 수 없다.')
-    # 도시가 플레이어 2의 소유인 경우, 플레이어2의 자금 500원추가
-    elif cityList[p1].get_owner() == 2:
-        if player1.pay_fee(1):
-            player2.balance += 500
-        # 도시가 플레이어 2의 소유이지만 자금이 없는 경우
-        else:
-            print('Player 2가 승리하였습니다.')
-            break
+    # turn 함수
+    turn(player1,player2,p1)
+    #자금이 없어서 상대방이 이긴 경우
+    if player_win == 1:
+        break
     # 플레이어1의 위치와 남은 금액
 
     # Player 2 (코드는 동일)
     p2 = player2.move()
-    print('{} 도착 {}'.format(cityList[p2].name, cityList[p2].get_owner_print()))
-    if cityList[p2].get_owner() == 0:
-        if player2.buy_city(2, cityList[p2]):
-            cityList[p2].set_owner(2)
-        else:
-            print('잔고가 부족하여 구입할 수 없다.')
-    elif cityList[p2].get_owner() == 1:
-        if player2.pay_fee(2):
-            player1.balance += 500
-        else:
-            print('Player 1이 승리하였습니다.')
-            break
-
+    #turn함수
+    turn(player2,player1,player2.move())
+    if player_win == 1:
+        break           
     print('\nPlayer 1 의 현재위치 :', cityList[p1].name)
     print('Player 1 남은 금액 : {}'.format(player1.balance))
     print('\nPlayer 2 의 현재위치 :', cityList[p2].name)
