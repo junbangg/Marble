@@ -7,16 +7,6 @@ class Player:
         self.balance = balance
         self.location = 0
 
-    # 일단 만들어놓은 정보 조회용 함수
-    def get_id(self):
-        return self.id
-
-    def get_balance(self):
-        return self.balance
-
-    def get_location(self):
-        return self.location
-
     # 주사위 던져서 몇 나왔는지 프린트, 이동, 위치 반환
     def move(self):
         ri = randint(1, 6)
@@ -41,3 +31,8 @@ class Player:
             return True
         else:
             return False
+
+    def print_current_state(self, city_list):
+        print("\nPlayer {}의 현재 위치: {}".format(self.id, city_list[self.location].name))
+        print("Player {}의 현재 잔고: {}".format(self.id, self.balance))
+
