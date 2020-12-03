@@ -1,6 +1,6 @@
 from random import randint
 
-
+#id -> 플레이어 번호 / balance -> 자금
 class Player:
     def __init__(self, id, balance=4000):
         self.id = id
